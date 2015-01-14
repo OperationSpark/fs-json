@@ -1,0 +1,26 @@
+{
+  "name": "fs-json",
+  "version": "0.1.0",
+  "description": "An fs module wrapper to support filesystem json operations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OperationSpark/fs-json.git"
+  },
+  "keywords": [
+    "fs",
+    "json"
+  ],
+  "author": "jfraboni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OperationSpark/fs-json/issues"
+  },
+  "homepage": "https://github.com/OperationSpark/fs-json",
+  "dependencies": {
+    "deep-extend": "^0.3.2"
+  }
+}
