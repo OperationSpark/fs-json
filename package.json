@@ -1,6 +1,6 @@
 {
   "name": "fs-json",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An fs module wrapper to support filesystem json operations.",
   "main": "index.js",
   "scripts": {
