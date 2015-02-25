@@ -35,19 +35,17 @@ module.exports = function () {
         },
         
         loadSync: function (filepath, encoding) {
+            var parsed;
             if (fs.existsSync(filepath)) {
                 encoding = (encoding) ? encoding : 'utf8';
                 var data = fs.readFileSync(filepath, encoding);
-                var parsed;
                 try {
                     parsed = JSON.parse(data);
                 } catch (err) {
                     return onErr('Error parsing JSON: ' + err);
                 }
-                return parsed;
-            } else {
-                throw 'No file found at ' + filepath;
             }
+            return parsed;
         }
     };
     return _util;
