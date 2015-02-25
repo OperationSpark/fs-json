@@ -6,8 +6,7 @@ module.exports = function () {
     var _util = {
         save: function (filepath, data, callback) {
             fs.writeFile(filepath, JSON.stringify(data), function (err) {
-                if (err) return onErr(err);
-                callback();
+                callback(err);
             });
             return _util;
         },
@@ -20,20 +19,17 @@ module.exports = function () {
         load: function (filepath, callback, encoding) {
             fs.exists(filepath, function (exists) {
                 encoding = (encoding) ? encoding : 'utf8';
-                if (exists) {
+                if (!exists) return callback(new Error('No file found at ' + filepath));
                 fs.readFile(filepath, encoding, function (err, data) {
-                        if (err) return onErr(err);
-                        var parsed;
-                        try {
-                            parsed = JSON.parse(data);
-                        } catch (err) {
-                            return onErr('Error parsing JSON: ' + err);
-                        }
-                        callback(parsed);
-                    });     
-                } else {
-                    throw 'No file found at ' + filepath;
-                }
+                    if (err) return onErr(err);
+                    var parsed;
+                    try {
+                        parsed = JSON.parse(data);
+                    } catch (errJSON) {
+                        return callback(errJSON, null);
+                    }
+                    callback(null, parsed);
+                });
             });
             return _util;
         },
@@ -49,7 +45,7 @@ module.exports = function () {
                     return onErr('Error parsing JSON: ' + err);
                 }
                 return parsed;
-            }  else {
+            } else {
                 throw 'No file found at ' + filepath;
             }
         }
